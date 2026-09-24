@@ -4,6 +4,8 @@
 
 Escolhi esta pergunta porque trabalho no agro em Espera Feliz e conheço a importância da lavoura de café para quem precisa planejar a safra. Minha leitura dos resultados está em [Relatório de insights](RELATORIO_INSIGHTS.md).
 
+**Entregáveis:** [problema e justificativa](PROBLEMA_E_JUSTIFICATIVA.md) · [fontes e coleta](FONTES_E_COLETA.md) · [notebook de EDA](notebook_eda.ipynb) e [scripts](analise.py) ([modelagem](modelagem.py)) · [relatório de insights](RELATORIO_INSIGHTS.md) · [visualização no Looker Studio](DASHBOARD_LOOKER.md).
+
 ## 1. Problema e justificativa
 
 Produtores de café precisam planejar colheita, investimentos e comercialização em meio à oscilação da produtividade e do valor recebido pela produção. Em Espera Feliz, município cafeeiro de Minas Gerais, a pergunta prática é: **como variam a produção e o rendimento do café arábica no município em comparação com Minas Gerais e outros estados produtores?** O valor médio implícito da produção ajuda a contextualizar a receita agrícola, mas não equivale à cotação diária nem permite estimar lucro.
@@ -55,9 +57,9 @@ O Ridge teve o menor MAE, mas uma previsão excessiva para Espera Feliz em 2022 
 
 ## 6. Visualizações e entrega
 
-- [Painel em HTML](index.html): gráficos, filtros de localidade e leitura dos indicadores; pode ser publicado pelo GitHub Pages ou aberto localmente.
+- [Painel em HTML publicado no GitHub Pages](https://eduardosilvafonseca18-netizen.github.io/projeto-semantix-cafe/): gráficos, filtros de localidade e leitura dos indicadores.
 - [Gráfico de produtividade](graficos/produtividade.png) e [gráfico de produção](graficos/producao.png).
-- [CSV para Looker Studio](dados/cafe_arabica_2014_2024.csv). Para criar o painel exigido na plataforma, importe o CSV em uma Planilha Google, conecte a planilha ao Looker Studio e crie: série temporal (`ano` × `sacas_ha`, detalhamento `localidade`); série temporal (`ano` × `producao_t`); cartões de produtividade e produção filtrados para 2024; controle de localidade. Configure `ano` como dimensão numérica ou data anual, medidas como número e **não use soma entre município e estado**. Publique o relatório e acrescente o link aqui: **[inserir URL do Looker Studio]**.
+- [Relatório nativo no Looker Studio](https://datastudio.google.com/reporting/76ba4bf8-9e14-4180-9f15-0ac9b4114372/page/XYg9F): evolução de 2014 a 2024 e comparação de 2024, ambos conferidos em leitura. **O acesso ainda está restrito ao proprietário**; a permissão por link precisa ser liberada e testada antes de entregar a URL como pública. A [documentação da visualização](DASHBOARD_LOOKER.md) descreve os campos e conclusões.
 
 ### Como reproduzir
 
