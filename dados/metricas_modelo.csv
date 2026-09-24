@@ -1,0 +1,4 @@
+﻿modelo,n_teste,mae_sc_ha,rmse_sc_ha
+Ridge,12,3.73,5.63
+Ano anterior,12,4.02,4.74
+Dois anos antes,12,4.35,5.82
