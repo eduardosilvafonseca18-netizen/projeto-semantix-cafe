@@ -26,8 +26,19 @@ O script remove o primeiro registro descritivo da API, agrupa medidas por escala
 | `sacas_ha` | `sacas_60kg / area_colhida_ha` | sacas de 60 kg por hectare |
 | `valor_implicito_reais_saca` | `valor_mil_reais * 1000 / sacas_60kg` | R$ nominais por saca |
 
-O rendimento oficial em kg/ha serve como conferência; pequenas diferenças podem decorrer de arredondamento. O valor implícito é uma divisão entre duas estatísticas anuais, **não uma cotação, receita por propriedade ou lucro**. Os valores nominais não foram deflacionados. Espera Feliz integra Minas Gerais, portanto as duas escalas se sobrepõem e suas quantidades não podem ser somadas como categorias independentes.
+O rendimento oficial em kg/ha serve como conferência; pequenas diferenças podem decorrer de arredondamento. O valor implícito é uma divisão entre duas estatísticas anuais, **não uma cotação, receita por propriedade ou lucro**. A versão paralela `dados/valor_real_2014_2024.csv` é corrigida pelo IPCA anual até dezembro de 2024, conforme [AMPLIACOES.md](AMPLIACOES.md). Espera Feliz integra Minas Gerais, portanto as duas escalas se sobrepõem e suas quantidades não podem ser somadas como categorias independentes.
 
 ## Reprodução e atualização
 
 Execute `python -m pip install -r requirements.txt`, depois `python analise.py` e `python modelagem.py` na raiz do projeto. A primeira execução atualiza a coleta pela API e gera CSV e gráficos; a segunda atualiza a avaliação temporal. O notebook `notebook_eda.ipynb` lê o CSV gerado. Para reproduzir exatamente a coleta apresentada sem consultar a API, consulte o JSON preservado. Revisões posteriores da PAM podem alterar números retornados em nova consulta.
+
+## Fontes adicionais e limites de compatibilidade
+
+| Fonte | Tipo e acesso | Uso e limite |
+| --- | --- | --- |
+| [IBGE, IPCA](https://www.ibge.gov.br/estatisticas/economicas/precos-e-custos/9256-indice-nacional-de-precos-ao-consumidor-amplo.html) | Variações anuais oficiais; comunicados públicos, transcritas em `economia.py` | Deflator de referência dezembro de 2024; aproxima valores anuais sem data de venda |
+| [NASA POWER, API diária](https://power.larc.nasa.gov/docs/services/api/temporal/daily/) | JSON público via API; `clima_nasa.py` | Fonte proposta para chuva e temperatura; coleta pendente, ponto espacial não representa talhões |
+| [Conab, custos agrícolas](https://www.gov.br/conab/pt-br/atuacao/informacoes-agropecuarias/custos-de-producao/planilhas-de-custos-de-producao/agricolas) | XLS histórico público, download na página de café arábica | Referência metodológica; custos não incorporados à PAM por falta de comparabilidade com Espera Feliz |
+| Registros voluntários por talhão | Modelo CSV vazio em `dados/modelo_talhao.csv`; coleta local | Não há linhas individuais públicas e nenhuma foi simulada |
+
+Detalhamento das fórmulas, resultados e precauções em [AMPLIACOES.md](AMPLIACOES.md).

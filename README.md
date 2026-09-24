@@ -4,7 +4,7 @@
 
 Escolhi esta pergunta porque trabalho no agro em Espera Feliz e conheço a importância da lavoura de café para quem precisa planejar a safra. Minha leitura dos resultados está em [Relatório de insights](RELATORIO_INSIGHTS.md).
 
-**Entregáveis:** [problema e justificativa](PROBLEMA_E_JUSTIFICATIVA.md) · [fontes e coleta](FONTES_E_COLETA.md) · [notebook de EDA](notebook_eda.ipynb) e [scripts](analise.py) ([modelagem](modelagem.py)) · [relatório de insights](RELATORIO_INSIGHTS.md) · [visualização no Looker Studio](DASHBOARD_LOOKER.md).
+**Entregáveis:** [problema e justificativa](PROBLEMA_E_JUSTIFICATIVA.md) · [fontes e coleta](FONTES_E_COLETA.md) · [notebook de EDA](notebook_eda.ipynb) e [scripts](analise.py) ([modelagem](modelagem.py)) · [relatório de insights](RELATORIO_INSIGHTS.md) · [ampliações: inflação, clima e custos](AMPLIACOES.md) · [visualização no Looker Studio](DASHBOARD_LOOKER.md).
 
 ## 1. Problema e justificativa
 
@@ -28,7 +28,7 @@ Coleta em 23/09/2026. Consultas e respostas originais ficam em `dados/fonte_sidr
 - `sacas_ha = sacas_60kg / area_colhida_ha` (se área positiva).
 - `valor_implicito_reais_saca = valor_mil_reais × 1000 / sacas_60kg` (se produção positiva).
 
-A medida de valor usa o valor anual declarado na PAM dividido pela produção anual. **Não é o preço à vista do café**, não foi corrigida pela inflação e não inclui custos. A produtividade oficial (`rendimento_kg_ha`) permite conferir `sacas_ha` com diferenças de arredondamento. Estados e município são escalas aninhadas: Espera Feliz integra Minas Gerais; suas produções **não devem ser somadas** no painel. A comparação de valores absolutos entre município e estados serve apenas para contexto; o rendimento por hectare é a comparação principal.
+A medida de valor usa o valor anual declarado na PAM dividido pela produção anual. **Não é o preço à vista do café**, tem versão corrigida pelo IPCA em `dados/valor_real_2014_2024.csv`; não inclui custos. A produtividade oficial (`rendimento_kg_ha`) permite conferir `sacas_ha` com diferenças de arredondamento. Estados e município são escalas aninhadas: Espera Feliz integra Minas Gerais; suas produções **não devem ser somadas** no painel. A comparação de valores absolutos entre município e estados serve apenas para contexto; o rendimento por hectare é a comparação principal.
 
 ## 4. Análise exploratória e insights
 
@@ -58,6 +58,7 @@ O Ridge teve o menor MAE, mas uma previsão excessiva para Espera Feliz em 2022 
 ## 6. Visualizações e entrega
 
 - [Painel em HTML publicado no GitHub Pages](https://eduardosilvafonseca18-netizen.github.io/projeto-semantix-cafe/): gráficos, filtros de localidade e leitura dos indicadores.
+- [Gráfico do valor implícito nominal e corrigido pelo IPCA](graficos/valor_real_espera_feliz.png).
 - [Gráfico de produtividade](graficos/produtividade.png) e [gráfico de produção](graficos/producao.png).
 - [Relatório nativo no Looker Studio](https://datastudio.google.com/reporting/76ba4bf8-9e14-4180-9f15-0ac9b4114372/page/XYg9F): evolução de 2014 a 2024 e comparação de 2024, ambos conferidos em leitura. Compartilhamento **Não listado · Leitor**: segundo a configuração salva no Looker Studio, qualquer pessoa com o link pode acessar. Uma sessão independente sem login não foi verificada. A [documentação da visualização](DASHBOARD_LOOKER.md) descreve os campos e conclusões.
 
@@ -67,10 +68,13 @@ O Ridge teve o menor MAE, mas uma previsão excessiva para Espera Feliz em 2022 
 python -m pip install -r requirements.txt
 python analise.py
 python modelagem.py
+python economia.py
+# Opcional, quando a API NASA POWER estiver disponível:
+python clima_nasa.py
 ```
 
 Abra `index.html` no navegador. O script requer acesso à API do IBGE para atualizar os dados. O arquivo CSV e os gráficos já estão incluídos, assim como as respostas originais. `notebook_eda.ipynb` organiza a leitura, checagens, análise exploratória e avaliação em células para apresentação.
 
 ### Limitações
 
-PAM informa agregados anuais, sujeitos a revisões; dados de cada propriedade podem divergir. O valor médio é nominal e incorpora diferenças de composição e qualidade. Não há variáveis meteorológicas nem preços diários neste conjunto; portanto, não se pode concluir que clima ou mercado causaram as variações observadas. Antes de divulgar uma comparação financeira, deflacionar a série e obter preços e custos compatíveis. O modelo foi testado com apenas 12 casos e não deve ser extrapolado para outra região ou horizonte.
+PAM informa agregados anuais, sujeitos a revisões; dados de cada propriedade podem divergir. A versão corrigida pelo IPCA usa dezembro de cada ano como aproximação para o valor anual; ainda incorpora diferenças de composição e qualidade. A coleta climática está preparada, mas seus dados não foram obtidos nesta entrega. Não se pode concluir que clima ou mercado causaram as variações. Para analisar margem financeira, ainda são necessários custos e receitas reais por unidade produtiva. Consulte [a ampliação metodológica](AMPLIACOES.md). O modelo foi testado com apenas 12 casos e não deve ser extrapolado para outra região ou horizonte.

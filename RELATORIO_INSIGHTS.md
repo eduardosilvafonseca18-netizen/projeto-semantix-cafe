@@ -14,6 +14,12 @@ Em Espera Feliz, a produtividade foi de **18,00 sacas de 60 kg por hectare em 20
 
 A série local oscila bastante: **13,00 sc/ha em 2021**, **20,00 em 2022**, **18,00 em 2023** e **24,00 em 2024**. Não seria prudente projetar a próxima colheita copiando só 2024. Esses números não informam chuva, idade do cafezal, altitude, variedade, tratos culturais ou perdas por talhão. Também não permitem afirmar qual fator provocou a mudança.
 
+## Nova leitura: valor nominal e real
+
+Apliquei o IPCA para expressar o valor implícito da produção em reais de dezembro de 2024. Em Espera Feliz, 2014 passou de R$ 336,11 nominais por saca para R$ 587,92 corrigidos. Para 2022, os R$ 1.233,91 nominais equivalem a R$ 1.353,27 nessa mesma base, acima dos R$ 1.200,00 de 2024. A comparação não depende só da unidade monetária, mas continua sem revelar os preços individuais, qualidade dos lotes ou custos. Fórmula, fonte e limites estão em [AMPLIACOES.md](AMPLIACOES.md).
+
+Clima e custos entram como próximos dados necessários. Estruturei um coletor para chuva e temperatura de um ponto próximo à sede municipal e um formulário vazio de talhão. Sem observações climáticas validadas ou contas de propriedades, não calculo correlação climática ou margem de lucro.
+
 ## Modelo e avaliação
 
 Testei uma regressão Ridge para estimar a produtividade de cada localidade com base nos rendimentos observados um e dois anos antes e na identificação da localidade. Treinei com **2016–2021** e reservei **2022–2024** para testar previsões de um ano à frente. A avaliação tem **12 casos**: três anos para cada uma das quatro localidades. Para não confundir complexidade com melhora, comparei o modelo com duas regras simples: usar o valor do ano anterior e usar o de dois anos antes.
