@@ -59,7 +59,7 @@ O Ridge teve o menor MAE, mas uma previsão excessiva para Espera Feliz em 2022 
 
 - [Painel em HTML publicado no GitHub Pages](https://eduardosilvafonseca18-netizen.github.io/projeto-semantix-cafe/): gráficos, filtros de localidade e leitura dos indicadores.
 - [Gráfico de produtividade](graficos/produtividade.png) e [gráfico de produção](graficos/producao.png).
-- [Relatório nativo no Looker Studio](https://datastudio.google.com/reporting/76ba4bf8-9e14-4180-9f15-0ac9b4114372/page/XYg9F): evolução de 2014 a 2024 e comparação de 2024, ambos conferidos em leitura. **O acesso ainda está restrito ao proprietário**; a permissão por link precisa ser liberada e testada antes de entregar a URL como pública. A [documentação da visualização](DASHBOARD_LOOKER.md) descreve os campos e conclusões.
+- [Relatório nativo no Looker Studio](https://datastudio.google.com/reporting/76ba4bf8-9e14-4180-9f15-0ac9b4114372/page/XYg9F): evolução de 2014 a 2024 e comparação de 2024, ambos conferidos em leitura. Compartilhamento **Não listado · Leitor**: segundo a configuração salva no Looker Studio, qualquer pessoa com o link pode acessar. Uma sessão independente sem login não foi verificada. A [documentação da visualização](DASHBOARD_LOOKER.md) descreve os campos e conclusões.
 
 ### Como reproduzir
 
